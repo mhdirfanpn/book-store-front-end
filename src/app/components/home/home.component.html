@@ -1,2 +1,14 @@
-<p>home works!</p>
+<div class="container">
+    <div *ngIf="isLoading">
+      <!-- Show the loader here -->
+      <div class="loader">Loading...</div>
+    </div>
+
+      <div class="items">
+        <div class="box" *ngFor="let b of books" (click)="viewBook(b)">
+            <img src="{{b.image}}" alt="">
+          <p>{{b.title}}</p>
+        </div>
+      </div>
+  </div>
 

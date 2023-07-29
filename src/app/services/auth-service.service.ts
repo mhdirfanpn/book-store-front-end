@@ -16,7 +16,8 @@ export class AuthService {
   }
 
   setJwtToken(token: string): void {
-    localStorage.setItem(this.JWT_TOKEN_KEY, token);
+    localStorage.setItem(this.JWT_TOKEN_KEY, token)
+    this.router.navigate(['/home']); 
   }
 
   isLoggedIn(): boolean {

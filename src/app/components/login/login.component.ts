@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]]
+      email: ['irfan@gmail.com', [Validators.required, Validators.email]],
+      password: ['12345', [Validators.required, Validators.minLength(5)]]
     });
   }
 
@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     }
 
     this.userService.userLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe((data) => {
-      this.authService.setJwtToken(data.token);
-      this.router.navigate(['/home']);
-
+      if(data.success){
+        this.authService.setJwtToken(data.token);
+      }
     })
   }
 }

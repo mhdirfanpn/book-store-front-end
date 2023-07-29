@@ -12,6 +12,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { CommonLayoutComponent } from './components/common-layout/common-layout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { CurrencyConversionPipe } from './pipes/currency-conversion.pipe';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HomeComponent,
     CommonLayoutComponent,
     NavbarComponent,
+    BookDetailsComponent,
+    CurrencyConversionPipe,
   ],
   imports: [
     BrowserModule,
