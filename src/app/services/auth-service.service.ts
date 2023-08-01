@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import  { Router } from '@angular/router'
+import jwt_decode from 'jwt-decode';
 
-// auth.service.ts
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,21 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.JWT_TOKEN_KEY);
-    this.router.navigate(['/login']); // Redirect to the login page after logout
+    this.router.navigate(['/login']);
   }
+
+
+  getDecodedAccessToken(): any {
+    try {
+      const token = this.getJwtToken();
+      if (!token) {
+        return null;
+      }
+      const decodedToken = jwt_decode(token);
+      return decodedToken;
+    } catch (error) {
+      return null;
+    }
+  }
+  
 }

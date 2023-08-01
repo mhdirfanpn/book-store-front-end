@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
+import { BookServiceService } from 'src/app/services/book-service.service';
 
 
 @Component({
@@ -13,26 +14,29 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  errorMessage: string = '';
 
-  constructor(private formBuilder: FormBuilder, private userService: UserServiceService, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserServiceService, private authService: AuthService, private bookService: BookServiceService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['irfan@gmail.com', [Validators.required, Validators.email]],
+      email: ['user@gmail.com', [Validators.required, Validators.email]],
       password: ['12345', [Validators.required, Validators.minLength(5)]]
     });
   }
 
   login() {
     if (this.loginForm.invalid) {
-      alert("All fields are required");
+      this.errorMessage = "All fields are required";
       return;
     }
 
     this.userService.userLogin(this.loginForm.value.email, this.loginForm.value.password).subscribe((data) => {
-      if(data.success){
-        this.authService.setJwtToken(data.token);
-      }
-    })
-  }
+      !data.success ? this.errorMessage = data.message: ""
+    })  
+    }
+
 }
+
+
+

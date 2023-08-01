@@ -6,6 +6,8 @@
     box-sizing: border-box; /* Optional: This ensures padding and border are included in the element's total width/height */
   }
 
+
+
   .loader {
     display: flex;
     justify-content: center;

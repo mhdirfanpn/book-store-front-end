@@ -10,7 +10,10 @@ img {
 
 .body {
     display: flex;
+    height: 100vh;
 }
+
+
 
 h1 {
     margin-top: 90px;

@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http'
-import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { NavbarModule } from './shared/components/navbar/navbar.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { CommonLayoutComponent } from './components/common-layout/common-layout.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { CurrencyConversionPipe } from './pipes/currency-conversion.pipe';
+
 
 
 @NgModule({
@@ -23,16 +24,18 @@ import { CurrencyConversionPipe } from './pipes/currency-conversion.pipe';
     RegisterComponent,
     HomeComponent,
     CommonLayoutComponent,
-    NavbarComponent,
     BookDetailsComponent,
     CurrencyConversionPipe,
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarModule,
   ],
   providers: [
    {

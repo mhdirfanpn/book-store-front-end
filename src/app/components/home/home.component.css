@@ -1,3 +1,4 @@
+
 .items {
     display: flex;
     flex-wrap: wrap;
@@ -11,7 +12,7 @@
     margin-top: 40px;
 }
 
-.box:hover{
+.box:hover {
     cursor: pointer;
 }
 
@@ -43,4 +44,3 @@ p {
     width: 80%;
     margin: auto;
 }
-

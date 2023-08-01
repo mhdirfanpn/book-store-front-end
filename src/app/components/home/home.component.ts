@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BookServiceService } from 'src/app/services/book-service.service';
 import { Router } from '@angular/router';
+import { Book } from 'src/app/interface/book';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +10,19 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  constructor( private service: BookServiceService, private router: Router ){}
+  constructor(private service: BookServiceService, private router: Router) { }
 
-  books: any = []
+  books: Book[] = []
   isLoading: boolean = true;
 
-  ngOnInit(){
+  ngOnInit() {
     this.service.booksData().subscribe((result) => {
-      this.books = result.books
+      this.books = result
       this.isLoading = false;
-      console.log(this.books)
     })
   }
 
-  viewBook(b: any) {
-    this.router.navigate(['book',b._id])
+  viewBook(book: Book) {
+    this.router.navigate(['book', book._id])
   }
 }

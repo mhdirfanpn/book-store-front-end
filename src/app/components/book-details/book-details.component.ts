@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BookServiceService } from 'src/app/services/book-service.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Book } from 'src/app/interface/book';
 
 @Component({
   selector: 'app-book-details',
@@ -8,23 +10,25 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent {
-  constructor(private service: BookServiceService, private router: ActivatedRoute){}
+  constructor(private bookService: BookServiceService, private authService: AuthService, private router: ActivatedRoute) { }
 
-  bookDetails : any = {}
-  getParamId : string | null = ""
-  imageUrl : string = ""
+  bookDetails!: Book
+  getParamId: string | null = ""
+  imageUrl: string = ""
   isLoading: boolean = true;
+  userData: string = this.authService.getDecodedAccessToken()
 
-  ngOnInit(){
+  ngOnInit() {
     this.getParamId = this.router.snapshot.paramMap.get('id');
-    this.service.bookDetails(this.getParamId).subscribe((result)=>{
-      this.bookDetails = result.book
+    this.bookService.bookDetails(this.getParamId).subscribe((result) => {
+      this.bookDetails = result
       this.isLoading = false
-      console.log(this.bookDetails)
     })
   }
 
-  AddToCart(id : string){
-    console.log(id)
+  addToCart(id: string) {
+    this.bookService.addTocart(id, this.userData).subscribe(() => {
+      this.bookService.getCart(this.userData).subscribe();
+    })
   }
 }
