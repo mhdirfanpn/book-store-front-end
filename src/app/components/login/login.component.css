@@ -71,6 +71,7 @@
   cursor: pointer;
   display: inline-block;
   margin: 0 auto;
+  margin-top: 15px;
   padding: 0.9rem 2.5rem;
   text-align: center;
   background-color: #47AB11;
